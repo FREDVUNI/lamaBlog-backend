@@ -3,13 +3,13 @@ import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 import joi from "joi"
 
-export const signup = (req,res) =>{
+export const signup = (req,res) =>{  
     try{
         const schema = joi.object({
             username:joi.string().required().min(3).max(20),
             email:joi.string().required().min(10).max(20).email(),
             password:joi.string().required().min(10).max(40),
-        })
+        }) 
 
         const {error} = schema.validate(req.body)
         if(error) return res.status(400).json(error.details[0].message)
